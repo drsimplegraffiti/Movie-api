@@ -12,6 +12,10 @@ app = Flask(__name__)
 app.config.from_envvar('ENV_FILE_LOCATION')
 mail = Mail(app)
 
+@app.route('/', methods=['GET'])
+def index():
+    return {"msg":"home page"}
+    
 from resources.routes import initialize_routes
 
 api = Api(app, errors=errors)

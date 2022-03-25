@@ -10,7 +10,7 @@ UpdatingMovieError, DeletingMovieError, MovieNotExistsError
 class MoviesApi(Resource):
     def get(self):
         query = Movie.objects()
-        movies = Movie.objects().to_json()
+        movies = Movie.objects().order_by('-casts').to_json()
         return Response(movies, mimetype="application/json", status=200)
 
     @jwt_required
