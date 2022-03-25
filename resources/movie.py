@@ -13,7 +13,7 @@ class MoviesApi(Resource):
         movies = Movie.objects().order_by('-casts').to_json()
         return Response(movies, mimetype="application/json", status=200)
 
-    @jwt_required
+    @jwt_required   
     def post(self):
         try:
             user_id = get_jwt_identity()
