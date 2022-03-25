@@ -13,7 +13,7 @@ class MoviesApi(Resource):
         movies = Movie.objects().order_by('-casts').to_json()
         return Response(movies, mimetype="application/json", status=200)
 
-    @jwt_required   
+    @jwt_required() 
     def post(self):
         try:
             user_id = get_jwt_identity()
@@ -34,7 +34,7 @@ class MoviesApi(Resource):
 
 
 class MovieApi(Resource):
-    @jwt_required
+    @jwt_required()
     def put(self, id):
         try:
             user_id = get_jwt_identity()
@@ -49,7 +49,7 @@ class MovieApi(Resource):
         except Exception:
             raise InternalServerError       
     
-    @jwt_required
+    @jwt_required()
     def delete(self, id):
         try:
             user_id = get_jwt_identity()
